@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[9872],{35908:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"BadgeUtils","desc":"Badge query and award helpers with cooldown support.","source":{"line":6,"path":"src/utils/BadgeUtils.luau"}}')}}]);

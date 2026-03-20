@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[2684],{84410:t=>{t.exports=JSON.parse('{"sourceUrl":"https://github.com/pedro-caixa/kitty/blob/master","baseUrl":"/kitty/","classOrder":[],"apiCategories":["constructor","lifecycle","utility","networking","data"]}')}}]);

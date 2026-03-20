@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[4526],{75257:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"Abbreviations","desc":"Power/suffix definitions used by BigNumber for compact number formatting.","source":{"line":6,"path":"src/utils/Abbreviations.luau"}}')}}]);
