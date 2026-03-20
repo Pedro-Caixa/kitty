@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[7791],{34660:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"RunContext","desc":"Runtime environment metadata for server/client/studio capability checks.","source":{"line":6,"path":"src/utils/RunContext.luau"}}')}}]);

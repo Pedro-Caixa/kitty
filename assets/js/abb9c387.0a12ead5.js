@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[8308],{44387:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"BigNumber","desc":"Arbitrary-scale number helper that stores values as mantissa/exponent pairs.","source":{"line":6,"path":"src/utils/BigNumber.luau"}}')}}]);

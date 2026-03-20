@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[9952],{45124:s=>{s.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"RobloxIcons","desc":"Provides standard Unicode characters for common Roblox icons.","source":{"line":6,"path":"src/utils/RobloxIcons.luau"}}')}}]);
