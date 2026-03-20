@@ -1,0 +1,21 @@
+{
+  "name": "kitty-dev",
+  "tree": {
+    "$className": "DataModel",
+    "ReplicatedStorage": {
+      "$className": "ReplicatedStorage",
+      "Kitty": {
+        "$path": "src"
+      },
+      "Packages": {
+        "$path": "Packages"
+      }
+    },
+    "ServerScriptService": {
+      "$className": "ServerScriptService",
+      "Tests": {
+        "$path": "tests"
+      }
+    }
+  }
+}

@@ -1,0 +1,17 @@
+[package]
+name = "pedro-caixa/kitty"
+version = "0.1.0"
+registry = "https://github.com/UpliftGames/wally-index"
+description = "Lifecycle-managed game framework for Roblox"
+license = "MIT"
+realm = "shared"
+
+include = ["wally.toml", "README.md", "LICENSE", "src", "default.project.json"]
+
+[dependencies]
+observers = "sleitnick/observers@0.5.0"
+bytenet = "ffrostflame/bytenet@0.4.6"
+trove = "sleitnick/trove@1.8.0"
+promise = "evaera/promise@4.0.0"
+profilestore = "vyon/profilestore@1.0.3"
+replica = "aykut92/replica@0.1.7"

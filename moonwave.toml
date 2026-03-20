@@ -1,0 +1,123 @@
+title = "Kitty"
+tagline = "Lifecycle-managed Roblox framework"
+changelog = true
+onBrokenLinks = "throw"
+onBrokenMarkdownLinks = "warn"
+
+# If your repository metadata is available, Moonwave can infer these.
+# Keeping explicit values makes local/docs CI behavior consistent.
+gitRepoUrl = "https://github.com/pedro-caixa/kitty"
+gitSourceBranch = "main"
+organizationName = "pedro-caixa"
+projectName = "kitty"
+url = "https://pedro-caixa.github.io"
+baseUrl = "/kitty/"
+
+apiCategories = ["constructor", "lifecycle", "utility", "networking", "data"]
+
+[[classOrder]]
+section = "Core"
+collapsed = false
+classes = [
+    "Kitty",
+    "Bootstrap",
+    "Service",
+    "Controller",
+    "Component",
+    "Enum",
+    "Signal",
+    "Logger",
+    "PackageResolver",
+]
+
+[[classOrder]]
+section = "Built-In Integrations"
+collapsed = false
+classes = [
+    "Observer",
+    "Packet",
+    "Trove",
+    "Promise",
+    "ProfileStore",
+    "Replica",
+    "Data",
+]
+
+[[classOrder]]
+section = "Utilities"
+collapsed = false
+classes = [
+    "Utils",
+    "Abbreviations",
+    "BigNumber",
+    "RobloxIcons",
+    "Queue",
+    "RunContext",
+    "PlayerUtils",
+    "ServerUtils",
+    "TimeUtils",
+    "Guid",
+    "BadgeUtils",
+    "TeleportUtils",
+    "PolicyInfo",
+]
+
+[docusaurus]
+onBrokenLinks = "throw"
+onBrokenMarkdownLinks = "warn"
+
+[docusaurus.navbar]
+title = "Kitty"
+
+[[docusaurus.navbar.items]]
+to = "/docs/intro"
+label = "Docs"
+position = "left"
+
+[[docusaurus.navbar.items]]
+to = "/api"
+label = "API"
+position = "left"
+
+[[docusaurus.navbar.items]]
+href = "https://github.com/pedro-caixa/kitty"
+label = "GitHub"
+position = "right"
+
+[docusaurus.footer]
+style = "dark"
+copyright = "Copyright (c) Kitty contributors. Built with Moonwave."
+
+[[docusaurus.footer.links]]
+title = "Docs"
+
+[[docusaurus.footer.links.items]]
+label = "API Reference"
+to = "/api"
+
+[[docusaurus.footer.links.items]]
+label = "Guides"
+to = "/docs/intro"
+
+[[docusaurus.footer.links]]
+title = "Community"
+
+[[docusaurus.footer.links.items]]
+label = "GitHub"
+href = "https://github.com/pedro-caixa/kitty"
+
+[home]
+enabled = true
+includeReadme = true
+
+[[home.features]]
+title = "Lifecycle Architecture"
+description = "Organize game code with first-class services, controllers, and components."
+
+[[home.features]]
+title = "Built-In Integrations"
+description = "Use Promise, Trove, Observer, Packet, ProfileStore, and Replica via Kitty wrappers."
+
+[[home.features]]
+title = "Utility Layer"
+description = "Ship reusable utility modules documented and grouped under a single Utils namespace."
