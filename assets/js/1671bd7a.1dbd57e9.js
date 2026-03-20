@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[8532],{94764:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"ServerUtils","desc":"Server metadata and runtime health helpers for matchmaking and diagnostics.","source":{"line":6,"path":"src/utils/ServerUtils.luau"}}')}}]);

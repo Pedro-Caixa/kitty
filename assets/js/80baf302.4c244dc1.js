@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[9119],{31110:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"PolicyInfo","desc":"PolicyService wrappers for compliance and external-link capability checks.","source":{"line":6,"path":"src/utils/PolicyInfo.luau"}}')}}]);

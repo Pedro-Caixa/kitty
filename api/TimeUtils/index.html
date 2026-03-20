@@ -4,14 +4,329 @@
 <meta charset="UTF-8">
 <meta name="generator" content="Docusaurus v3.7.0">
 <title data-rh="true">TimeUtils | Kitty</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://Pedro-Caixa.github.io/kitty/api/TimeUtils"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="TimeUtils | Kitty"><meta data-rh="true" name="description" content="Utility functions for time formatting, cooldowns, and timestamps."><meta data-rh="true" property="og:description" content="Utility functions for time formatting, cooldowns, and timestamps."><link data-rh="true" rel="canonical" href="https://Pedro-Caixa.github.io/kitty/api/TimeUtils"><link data-rh="true" rel="alternate" href="https://Pedro-Caixa.github.io/kitty/api/TimeUtils" hreflang="en"><link data-rh="true" rel="alternate" href="https://Pedro-Caixa.github.io/kitty/api/TimeUtils" hreflang="x-default"><link rel="stylesheet" href="/kitty/assets/css/styles.5cbed574.css">
-<script src="/kitty/assets/js/runtime~main.f81f1fda.js" defer="defer"></script>
-<script src="/kitty/assets/js/main.859bb81f.js" defer="defer"></script>
+<script src="/kitty/assets/js/runtime~main.b1740447.js" defer="defer"></script>
+<script src="/kitty/assets/js/main.0565f860.js" defer="defer"></script>
 </head>
 <body class="navigation-with-keyboard">
-<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,t("light"))}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/kitty/"><b class="navbar__title text--truncate">Kitty</b></a><a class="navbar__item navbar__link" href="/kitty/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/kitty/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/pedro-caixa/kitty" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/kitty/api/Kitty">Core</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Kitty">​Kitty</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Bootstrap">​Bootstrap</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Service">​Service</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Controller">​Controller</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Component">​Component</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Enum">​Enum</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Signal">​Signal</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Logger">​Logger</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/PackageResolver">​Package​Resolver</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/kitty/api/Observer">Built-In Integrations</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Observer">​Observer</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Packet">​Packet</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Trove">​Trove</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Promise">​Promise</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/ProfileStore">​Profile​Store</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Replica">​Replica</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Data">​Data</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/kitty/api/Utils">Utilities</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Utils">​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Abbreviations">​Abbreviations</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/BigNumber">​Big​Number</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/RobloxIcons">​Roblox​Icons</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Queue">​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/RunContext">​Run​Context</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/PlayerUtils">​Player​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/ServerUtils">​Server​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/kitty/api/TimeUtils">​Time​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Guid">​Guid</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/BadgeUtils">​Badge​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/TeleportUtils">​Teleport​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/PolicyInfo">​Policy​Info</a></li></ul></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">Time</span><span style="display:inline-block">Utils</span></h1><div class="luaClassTags_EipM"></div><div>
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,t("light"))}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/kitty/"><b class="navbar__title text--truncate">Kitty</b></a><a class="navbar__item navbar__link" href="/kitty/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/kitty/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/pedro-caixa/kitty" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/kitty/api/Kitty">Core</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Kitty">​Kitty</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Bootstrap">​Bootstrap</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Service">​Service</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Controller">​Controller</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Component">​Component</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Enum">​Enum</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Signal">​Signal</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Logger">​Logger</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/PackageResolver">​Package​Resolver</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret" role="button" aria-expanded="true" href="/kitty/api/Observer">Built-In Integrations</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Observer">​Observer</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Packet">​Packet</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Trove">​Trove</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Promise">​Promise</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/ProfileStore">​Profile​Store</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Replica">​Replica</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Data">​Data</a></li></ul></li><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/kitty/api/Utils">Utilities</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Utils">​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Abbreviations">​Abbreviations</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/BigNumber">​Big​Number</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/RobloxIcons">​Roblox​Icons</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Queue">​Queue</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/RunContext">​Run​Context</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/PlayerUtils">​Player​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/ServerUtils">​Server​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/kitty/api/TimeUtils">​Time​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/Guid">​Guid</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/BadgeUtils">​Badge​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/TeleportUtils">​Teleport​Utils</a></li><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link" tabindex="0" href="/kitty/api/PolicyInfo">​Policy​Info</a></li></ul></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">Time</span><span style="display:inline-block">Utils</span></h1><div class="luaClassTags_EipM"></div><div>
 <p>Utility functions for time formatting, cooldowns, and timestamps.</p>
-</div></header></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
-    &quot;functions&quot;: [],
+</div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="FormatMMSS"><code style="text-decoration:none">FormatMMSS</code><a href="#FormatMMSS" class="hash-link" aria-label="Direct link to FormatMMSS" title="Direct link to FormatMMSS">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L24"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">FormatMMSS</code><code>(</code><code>seconds<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Total</code><code class="blue_P4bS">seconds</code><code>) → </code><code class="blue_P4bS">Formatted</code><code class="blue_P4bS">string</code><code class="blue_P4bS">&quot;MM:SS&quot;</code></div><div>
+<p>Formats seconds into MM:SS format.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="FormatHHMMSS"><code style="text-decoration:none">FormatHHMMSS</code><a href="#FormatHHMMSS" class="hash-link" aria-label="Direct link to FormatHHMMSS" title="Direct link to FormatHHMMSS">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L35"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">FormatHHMMSS</code><code>(</code><code>seconds<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Total</code><code class="blue_P4bS">seconds</code><code>) → </code><code class="blue_P4bS">Formatted</code><code class="blue_P4bS">string</code><code class="blue_P4bS">&quot;HH:MM:SS&quot;</code></div><div>
+<p>Formats seconds into HH:MM:SS format.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="FormatDuration"><code style="text-decoration:none">FormatDuration</code><a href="#FormatDuration" class="hash-link" aria-label="Direct link to FormatDuration" title="Direct link to FormatDuration">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L48"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">FormatDuration</code><code>(</code><div class="inset_uKQm"><div><code>seconds<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Total</code><code class="blue_P4bS">seconds</code><code>,</code></div><div><code>short<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Use</code><code class="blue_P4bS">short</code><code class="blue_P4bS">format</code><code class="purple_ieR2">(</code><code class="blue_P4bS">1h</code><code class="blue_P4bS">2m</code><code class="blue_P4bS">3s</code><code class="blue_P4bS">vs</code><code class="blue_P4bS">1</code><code class="blue_P4bS">hour</code><code class="blue_P4bS">2</code><code class="blue_P4bS">minutes</code><code class="blue_P4bS">3</code><code class="blue_P4bS">seconds</code><code class="purple_ieR2">)</code></div></div><code>) → </code><code class="blue_P4bS">Formatted</code><code class="blue_P4bS">string</code></div><div>
+<p>Formats seconds into a human-readable duration.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetTimestamp"><code style="text-decoration:none">GetTimestamp</code><a href="#GetTimestamp" class="hash-link" aria-label="Direct link to GetTimestamp" title="Direct link to GetTimestamp">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L87"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">GetTimestamp</code><code>(</code><code>) → </code><code class="blue_P4bS">Unix</code><code class="blue_P4bS">timestamp</code><code class="blue_P4bS">in</code><code class="blue_P4bS">seconds</code></div><div>
+<p>Gets the current Unix timestamp.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetPreciseTime"><code style="text-decoration:none">GetPreciseTime</code><a href="#GetPreciseTime" class="hash-link" aria-label="Direct link to GetPreciseTime" title="Direct link to GetPreciseTime">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L95"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">GetPreciseTime</code><code>(</code><code>) → </code><code class="blue_P4bS">Time</code><code class="blue_P4bS">in</code><code class="blue_P4bS">seconds</code><code class="purple_ieR2">(</code><code class="blue_P4bS">with</code><code class="blue_P4bS">decimals</code><code class="purple_ieR2">)</code></div><div>
+<p>Gets the current time with millisecond precision.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="FormatTimestamp"><code style="text-decoration:none">FormatTimestamp</code><a href="#FormatTimestamp" class="hash-link" aria-label="Direct link to FormatTimestamp" title="Direct link to FormatTimestamp">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L105"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">FormatTimestamp</code><code>(</code><div class="inset_uKQm"><div><code>timestamp<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Unix</code><code class="blue_P4bS">timestamp</code><code>,</code></div><div><code>format<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Optional</code><code class="blue_P4bS">strftime</code><code class="blue_P4bS">format</code><code class="purple_ieR2">(</code><code>default<!-- -->: </code><code class="blue_P4bS">&quot;%Y</code><code class="op_lSLc">-</code><code class="blue_P4bS">%m</code><code class="op_lSLc">-</code><code class="blue_P4bS">%d</code><code class="blue_P4bS">%H:%M:%S&quot;</code><code class="purple_ieR2">)</code></div></div><code>) → </code><code class="blue_P4bS">Formatted</code><code class="blue_P4bS">date</code><code class="blue_P4bS">string</code></div><div>
+<p>Formats a Unix timestamp to a date string.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="GetElapsed"><code style="text-decoration:none">GetElapsed</code><a href="#GetElapsed" class="hash-link" aria-label="Direct link to GetElapsed" title="Direct link to GetElapsed">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L114"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">GetElapsed</code><code>(</code><code>timestamp<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Unix</code><code class="blue_P4bS">timestamp</code><code>) → </code><code class="blue_P4bS">Seconds</code><code class="blue_P4bS">elapsed</code></div><div>
+<p>Gets the time elapsed since a timestamp.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="HasExpired"><code style="text-decoration:none">HasExpired</code><a href="#HasExpired" class="hash-link" aria-label="Direct link to HasExpired" title="Direct link to HasExpired">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L124"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">HasExpired</code><code>(</code><div class="inset_uKQm"><div><code>timestamp<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Unix</code><code class="blue_P4bS">timestamp</code><code class="blue_P4bS">when</code><code class="blue_P4bS">something</code><code class="blue_P4bS">started</code><code>,</code></div><div><code>duration<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Duration</code><code class="blue_P4bS">in</code><code class="blue_P4bS">seconds</code></div></div><code>) → </code><code class="blue_P4bS">Whether</code><code class="blue_P4bS">the</code><code class="blue_P4bS">duration</code><code class="blue_P4bS">has</code><code class="blue_P4bS">passed</code></div><div>
+<p>Checks if a timestamp has expired.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="CreateCooldownTracker"><code style="text-decoration:none">CreateCooldownTracker</code><a href="#CreateCooldownTracker" class="hash-link" aria-label="Direct link to CreateCooldownTracker" title="Direct link to CreateCooldownTracker">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L132"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">CreateCooldownTracker</code><code>(</code><code>) → </code><code class="blue_P4bS">CooldownTracker</code><code class="blue_P4bS">instance</code></div><div>
+<p>Creates a cooldown tracker for managing multiple cooldowns.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="MsToSeconds"><code style="text-decoration:none">MsToSeconds</code><a href="#MsToSeconds" class="hash-link" aria-label="Direct link to MsToSeconds" title="Direct link to MsToSeconds">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L178"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">MsToSeconds</code><code>(</code><code>ms<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Milliseconds</code><code>) → </code><code class="blue_P4bS">Seconds</code></div><div>
+<p>Converts milliseconds to seconds.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="SecondsToMs"><code style="text-decoration:none">SecondsToMs</code><a href="#SecondsToMs" class="hash-link" aria-label="Direct link to SecondsToMs" title="Direct link to SecondsToMs">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L187"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">SecondsToMs</code><code>(</code><code>seconds<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Seconds</code><code>) → </code><code class="blue_P4bS">Milliseconds</code></div><div>
+<p>Converts seconds to milliseconds.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="CreateDebounce"><code style="text-decoration:none">CreateDebounce</code><a href="#CreateDebounce" class="hash-link" aria-label="Direct link to CreateDebounce" title="Direct link to CreateDebounce">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L196"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">CreateDebounce</code><code>(</code><code>duration<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Cooldown</code><code class="blue_P4bS">duration</code><code class="blue_P4bS">in</code><code class="blue_P4bS">seconds</code><code>) → </code><code class="blue_P4bS">Function</code><code class="blue_P4bS">that</code><code class="blue_P4bS">returns</code><code class="blue_P4bS">true</code><code class="blue_P4bS">if</code><code class="blue_P4bS">not</code><code class="blue_P4bS">on</code><code class="blue_P4bS">cooldown</code><code class="purple_ieR2">(</code><code class="blue_P4bS">and</code><code class="blue_P4bS">starts</code><code class="blue_P4bS">cooldown</code><code class="purple_ieR2">)</code></div><div>
+<p>Creates a simple debounce function.</p>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Throttle"><code style="text-decoration:none">Throttle</code><a href="#Throttle" class="hash-link" aria-label="Direct link to Throttle" title="Direct link to Throttle">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/pedro-caixa/kitty/blob/master/src/utils/Time.luau#L215"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>TimeUtils<!-- -->.</code><code class="green_DgR4">Throttle</code><code>(</code><div class="inset_uKQm"><div><code>callback<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Function</code><code class="blue_P4bS">to</code><code class="blue_P4bS">throttle</code><code>,</code></div><div><code>duration<!-- -->: </code><code class="op_lSLc">-</code><code class="blue_P4bS">Minimum</code><code class="blue_P4bS">time</code><code class="blue_P4bS">between</code><code class="blue_P4bS">calls</code></div></div><code>) → </code><code class="blue_P4bS">Throttled</code><code class="blue_P4bS">function</code></div><div>
+<p>Creates a throttle function that limits calls to once per duration.</p>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;FormatMMSS&quot;,
+            &quot;desc&quot;: &quot;Formats seconds into MM:SS format.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;seconds&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Total seconds&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Formatted string \&quot;MM:SS\&quot;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 24,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FormatHHMMSS&quot;,
+            &quot;desc&quot;: &quot;Formats seconds into HH:MM:SS format.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;seconds&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Total seconds&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Formatted string \&quot;HH:MM:SS\&quot;&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 35,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FormatDuration&quot;,
+            &quot;desc&quot;: &quot;Formats seconds into a human-readable duration.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;seconds&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Total seconds&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;short&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Use short format (1h 2m 3s vs 1 hour 2 minutes 3 seconds)&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Formatted string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 48,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetTimestamp&quot;,
+            &quot;desc&quot;: &quot;Gets the current Unix timestamp.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Unix timestamp in seconds&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 87,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetPreciseTime&quot;,
+            &quot;desc&quot;: &quot;Gets the current time with millisecond precision.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Time in seconds (with decimals)&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 95,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;FormatTimestamp&quot;,
+            &quot;desc&quot;: &quot;Formats a Unix timestamp to a date string.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;timestamp&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Unix timestamp&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;format&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Optional strftime format (default: \&quot;%Y-%m-%d %H:%M:%S\&quot;)&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Formatted date string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 105,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;GetElapsed&quot;,
+            &quot;desc&quot;: &quot;Gets the time elapsed since a timestamp.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;timestamp&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Unix timestamp&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Seconds elapsed&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 114,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;HasExpired&quot;,
+            &quot;desc&quot;: &quot;Checks if a timestamp has expired.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;timestamp&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Unix timestamp when something started&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;duration&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Duration in seconds&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Whether the duration has passed&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 124,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;CreateCooldownTracker&quot;,
+            &quot;desc&quot;: &quot;Creates a cooldown tracker for managing multiple cooldowns.&quot;,
+            &quot;params&quot;: [],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;CooldownTracker instance&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 132,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;MsToSeconds&quot;,
+            &quot;desc&quot;: &quot;Converts milliseconds to seconds.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;ms&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Milliseconds&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Seconds&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 178,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SecondsToMs&quot;,
+            &quot;desc&quot;: &quot;Converts seconds to milliseconds.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;seconds&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Seconds&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Milliseconds&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 187,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;CreateDebounce&quot;,
+            &quot;desc&quot;: &quot;Creates a simple debounce function.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;duration&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Cooldown duration in seconds&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Function that returns true if not on cooldown (and starts cooldown)&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 196,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Throttle&quot;,
+            &quot;desc&quot;: &quot;Creates a throttle function that limits calls to once per duration.&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;callback&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Function to throttle&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;duration&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;- Minimum time between calls&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Throttled function&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 215,
+                &quot;path&quot;: &quot;src/utils/Time.luau&quot;
+            }
+        }
+    ],
     &quot;properties&quot;: [],
     &quot;types&quot;: [],
     &quot;name&quot;: &quot;TimeUtils&quot;,
@@ -20,6 +335,6 @@
         &quot;line&quot;: 6,
         &quot;path&quot;: &quot;src/utils/Time.luau&quot;
     }
-}</pre></details></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Pedro-Caixa. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#CreateCooldownTracker" class="table-of-contents__link toc-highlight">.CreateCooldownTracker</a></li><li><a href="#CreateDebounce" class="table-of-contents__link toc-highlight">.CreateDebounce</a></li><li><a href="#FormatDuration" class="table-of-contents__link toc-highlight">.FormatDuration</a></li><li><a href="#FormatHHMMSS" class="table-of-contents__link toc-highlight">.FormatHHMMSS</a></li><li><a href="#FormatMMSS" class="table-of-contents__link toc-highlight">.FormatMMSS</a></li><li><a href="#FormatTimestamp" class="table-of-contents__link toc-highlight">.FormatTimestamp</a></li><li><a href="#GetElapsed" class="table-of-contents__link toc-highlight">.GetElapsed</a></li><li><a href="#GetPreciseTime" class="table-of-contents__link toc-highlight">.GetPreciseTime</a></li><li><a href="#GetTimestamp" class="table-of-contents__link toc-highlight">.GetTimestamp</a></li><li><a href="#HasExpired" class="table-of-contents__link toc-highlight">.HasExpired</a></li><li><a href="#MsToSeconds" class="table-of-contents__link toc-highlight">.MsToSeconds</a></li><li><a href="#SecondsToMs" class="table-of-contents__link toc-highlight">.SecondsToMs</a></li><li><a href="#Throttle" class="table-of-contents__link toc-highlight">.Throttle</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="footer__bottom text--center"><div class="footer__copyright">Copyright © 2026 Pedro-Caixa. Built with Moonwave and Docusaurus.</div></div></div></footer></div>
 </body>
 </html>

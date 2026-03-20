@@ -1,1 +1,0 @@
-"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[3806],{73522:e=>{e.exports=JSON.parse('{"functions":[],"properties":[],"types":[],"name":"PlayerUtils","desc":"Player-related helper methods for profile, social, and avatar queries.","source":{"line":6,"path":"src/utils/PlayerUtils.luau"}}')}}]);
