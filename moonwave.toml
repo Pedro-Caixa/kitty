@@ -7,7 +7,7 @@ onBrokenMarkdownLinks = "warn"
 # If your repository metadata is available, Moonwave can infer these.
 # Keeping explicit values makes local/docs CI behavior consistent.
 gitRepoUrl = "https://github.com/pedro-caixa/kitty"
-gitSourceBranch = "main"
+gitSourceBranch = "master"
 organizationName = "pedro-caixa"
 projectName = "kitty"
 url = "https://pedro-caixa.github.io"

@@ -2,6 +2,10 @@
 
 A **lifecycle-managed game framework** for Roblox that helps you organize server logic, client logic, and game components in a clean, scalable way.
 
+<div align="center">
+  <img src="https://i.ibb.co/tppgcnxt/kitty-logo.png" alt="Kitty Logo" width="250"/>
+</div>
+
 ## What is Kitty?
 
 Kitty provides a structured way to build Roblox games by separating concerns into:
@@ -219,5 +223,3 @@ Kitty now ships with built-in package integration for:
 - `ByteNet` (`ffrostflame/bytenet`)
 - `Trove` (`sleitnick/trove`)
 - `Promise` (`evaera/promise`)
-
-Run `wally install` in your game project so `ReplicatedStorage.Packages` contains these modules.
