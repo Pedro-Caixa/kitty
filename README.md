@@ -1,71 +1,31 @@
 # Kitty
 
-Lifecycle-managed game framework for Roblox.
+A **lifecycle-managed game framework** for Roblox that helps you organize server logic, client logic, and game components in a clean, scalable way.
 
-This repository contains the framework source, ready for Wally publishing and API documentation generation with Moonwave.
+## What is Kitty?
 
-## Local Development
+Kitty provides a structured way to build Roblox games by separating concerns into:
 
-Build a local place file:
+- **Services** – Server-side game logic (handling players, data, game state)
+- **Controllers** – Client-side logic (UI, input handling, client-side state)
+- **Components** – Tag-based objects that can be attached to any part in your game
+- **Utilities** – Helper functions for common tasks
+- **Packages** – Custom modules you can add to extend Kitty
 
-```bash
-rojo build -o "Kitty-dev.rbxlx"
-```
+It handles the lifecycle of these modules automatically, so you can focus on writing game logic instead of managing initialization order.
 
-Open the file in Studio, then sync changes with:
+## Getting Started
 
-```bash
-rojo serve
-```
+### Step 1: Set Up Your Game Structure
 
-## Use Kitty In Another Project
+Create these folders in Roblox Studio:
 
-### 1. Add dependency in your game project
+- **ServerScriptService** → Create a **Services** folder inside it
+- **StarterPlayer** → **StarterPlayerScripts** → Create a **Controllers** folder inside it
 
-In your game's `wally.toml`:
+### Step 2: Add Bootstrap Scripts
 
-```toml
-[dependencies]
-Kitty = "pedro-caixa/kitty@0.1.0"
-```
-
-Install packages:
-
-```bash
-wally install
-```
-
-### 2. Map Wally packages in your game `default.project.json`
-
-Make sure your Rojo tree has:
-
-```json
-{
-  "name": "my-game",
-  "tree": {
-    "$className": "DataModel",
-    "ReplicatedStorage": {
-      "$className": "ReplicatedStorage",
-      "Packages": {
-        "$path": "Packages"
-      }
-    }
-  }
-}
-```
-
-You can then require Kitty from `ReplicatedStorage.Packages.Kitty`.
-
-For this prototype repository itself (without Wally), require from `ReplicatedStorage.Kitty`.
-
-## Studio Bootstrap Setup
-
-Create these folders in your game:
-
-- `ServerScriptService/Services`
-- `StarterPlayer/StarterPlayerScripts/Controllers`
-
-Create one server Script in `ServerScriptService`:
+**Create a Script in ServerScriptService** (initialize Kitty on the server):
 
 ```lua
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -73,15 +33,11 @@ local Kitty = require(ReplicatedStorage.Packages.Kitty)
 
 Kitty.new({
 	services = script.Parent.Services,
-	-- Optional: user-defined utilities, loaded into Kitty.Utils
-	utils = ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utils"),
-	-- Optional: user-defined package modules, loaded into Kitty.<ModuleName>
-	packages = ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Packages"),
 	devLogs = true,
 })
 ```
 
-Create one LocalScript in `StarterPlayerScripts`:
+**Create a LocalScript in StarterPlayer > StarterPlayerScripts** (initialize Kitty on the client):
 
 ```lua
 local ReplicatedStorage = game:GetService("ReplicatedStorage")
@@ -89,15 +45,140 @@ local Kitty = require(ReplicatedStorage.Packages.Kitty)
 
 Kitty.new({
 	controllers = script.Parent.Controllers,
-	utils = ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Utils"),
-	packages = ReplicatedStorage:WaitForChild("Shared"):WaitForChild("Packages"),
 	devLogs = true,
 })
 ```
 
-## Prototype API Summary
+### Step 3: Create Your First Service
 
-- `Kitty.new(config)` starts bootstrap on current context (server or client).
+Create a **ModuleScript** named `ExampleService` inside `ServerScriptService > Services`:
+
+```lua
+local Kitty = require(game:GetService("ReplicatedStorage").Packages.Kitty)
+
+local ExampleService = Kitty.Service("ExampleService", {})
+
+function ExampleService:Init()
+	print("ExampleService initialized!")
+end
+
+function ExampleService:Start()
+	print("ExampleService started!")
+end
+
+return ExampleService
+```
+
+### Step 4: Create Your First Controller
+
+Create a **LocalScript(as ModuleScript)** named `ExampleController` inside `StarterPlayer > StarterPlayerScripts > Controllers`:
+
+```lua
+local Kitty = require(game:GetService("ReplicatedStorage").Packages.Kitty)
+
+local ExampleController = Kitty.Controller("ExampleController", {})
+
+function ExampleController:Init()
+	print("ExampleController initialized!")
+end
+
+function ExampleController:Start()
+	print("ExampleController started!")
+end
+
+return ExampleController
+```
+
+## Core Features
+
+### Services
+
+Services run on the **server** and manage game logic like player data, scoring, or game state.
+
+```lua
+local PlayerService = Kitty.Service("PlayerService", {})
+
+function PlayerService:Start()
+	game:GetService("Players").PlayerAdded:Connect(function(player)
+		print(player.Name .. " joined!")
+	end)
+end
+
+return PlayerService
+```
+
+### Controllers
+
+Controllers run on the **client** and handle UI, input, and client-side logic.
+
+```lua
+local InputController = Kitty.Controller("InputController", {})
+
+function InputController:Start()
+	local UserInputService = game:GetService("UserInputService")
+	UserInputService.InputBegan:Connect(function(input, gameProcessed)
+		if not gameProcessed and input.KeyCode == Enum.KeyCode.E then
+			print("E key pressed!")
+		end
+	end)
+end
+
+return InputController
+```
+
+### Components
+
+Components are pieces of logic you can attach to game objects using tags.
+
+```lua
+local Kitty = require(game:GetService("ReplicatedStorage").Packages.Kitty)
+
+local DamageComponent = Kitty.Component("Damage", {
+	damage = 10,
+})
+
+function DamageComponent:Construct()
+	-- Called when the component is created
+	print("Damage component created")
+end
+
+function DamageComponent:Start()
+	-- Called after all components are initialized
+	self.Instance.Touched:Connect(function(hit)
+		print("Hit: " .. hit.Name .. " for " .. self.damage .. " damage")
+	end)
+end
+
+return DamageComponent
+```
+
+To use a component, add a `CollectionService` tag to a part in your game that matches the component name.
+
+## Built-in Utilities
+
+Kitty comes with helpful utilities in `Kitty.Utils`:
+
+- **ProfileStore** – Save and load player data
+- **Replica** – Sync data between server and client
+- **Packet** – Send custom network packets
+- **Promise** – Handle asynchronous operations
+- **Trove** – Automatically clean up connections and objects
+- **Observer** – Watch for object changes
+
+Check the [API Documentation](https://github.com/Pedro-Caixa/Kitty) for detailed usage.
+
+## Tips
+
+- **Services** are singletons – only one instance per game
+- **Controllers** are singletons on the client
+- **Components** can have multiple instances (one per tagged object)
+- Kitty automatically calls `Init()` then `Start()` on all modules in the right order
+- Use `devLogs = true` in `Kitty.new()` to see debug messages (helpful for learning!)
+
+## Need Help?
+
+Check out the full [API documentation](https://github.com/Pedro-Caixa/Kitty) for more advanced features and examples.
+
 - `config.devLogs` enables debug/info logs during development. By default, Kitty only prints warnings/errors.
 - `config.utils` (optional) registers user utility ModuleScripts into `Kitty.Utils`.
 - `config.packages` (optional) registers user package ModuleScripts into `Kitty.<ModuleName>`.
@@ -140,42 +221,3 @@ Kitty now ships with built-in package integration for:
 - `Promise` (`evaera/promise`)
 
 Run `wally install` in your game project so `ReplicatedStorage.Packages` contains these modules.
-
-## Publish To Wally
-
-### 1. Prepare the release version
-
-Update `version` in `wally.toml`.
-
-### 2. Create and push a release tag
-
-```bash
-git tag v0.1.0
-git push origin v0.1.0
-```
-
-Pushing a `v*` tag triggers `.github/workflows/release.yml`, which runs `wally publish` using `WALLY_AUTH_TOKEN`.
-
-### 3. Configure required GitHub secret
-
-In repository settings, add:
-
-- `WALLY_AUTH_TOKEN`: your Wally auth token used for package publishing.
-
-## Publish Moonwave Docs To GitHub Pages
-
-This repo includes `.github/workflows/docs.yml`.
-
-- Trigger: pushes to `main` or manual dispatch.
-- Build command: `moonwave build --out-dir dist`.
-- Deploy target: GitHub Pages environment.
-
-### One-time GitHub setup
-
-1. Open GitHub repository settings.
-2. Go to Pages.
-3. Set source to **GitHub Actions**.
-
-Once enabled, docs will publish to `https://pedro-caixa.github.io/kitty/`.
-
-For Rojo workflow details, see the official docs: https://rojo.space/docs.
