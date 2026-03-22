@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Component
-	@within Kitty
 	Tag-based component system backed by observer lifecycle hooks.
 ]=]
 

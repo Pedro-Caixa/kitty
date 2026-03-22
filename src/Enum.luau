@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Enum
-	@within Kitty
 	Utility for defining read-only enum tables with reverse lookups.
 ]=]
 

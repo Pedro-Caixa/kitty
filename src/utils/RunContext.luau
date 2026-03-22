@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class RunContext
-	@within Utils
 	Runtime environment metadata for server/client/studio capability checks.
 ]=]
 
@@ -24,7 +23,73 @@ end)
 
 export type Label = "Edit" | "Server" | "Client"
 
-return table.freeze({
+--[=[
+	@prop Identity Label
+	@within RunContext
+	Identity label of the current run context.
+]=]
+
+--[=[
+	@prop IsRCC boolean
+	@within RunContext
+	Whether this is a dedicated Roblox cloud server process.
+]=]
+
+--[=[
+	@prop IsEdit boolean
+	@within RunContext
+	Whether Studio is in edit mode.
+]=]
+
+--[=[
+	@prop IsTestRun boolean
+	@within RunContext
+	Whether Studio is currently running a test session.
+]=]
+
+--[=[
+	@prop IsServer boolean
+	@within RunContext
+	Whether the code is running on server.
+]=]
+
+--[=[
+	@prop IsClient boolean
+	@within RunContext
+	Whether the code is running on client.
+]=]
+
+--[=[
+	@prop IsStudio boolean
+	@within RunContext
+	Whether the runtime is Roblox Studio.
+]=]
+
+--[=[
+	@prop IsOnline boolean
+	@within RunContext
+	Whether there is an online server job attached to this session.
+]=]
+
+--[=[
+	@prop IsTenFoot boolean
+	@within RunContext
+	Whether the current experience is using ten-foot interface mode.
+]=]
+
+--[=[
+	@prop IsTouch boolean
+	@within RunContext
+	Whether touch input is available on this device.
+]=]
+
+--[=[
+	@prop IsVR boolean
+	@within RunContext
+	Whether VR is enabled in the current runtime.
+]=]
+
+local RunContext = table.freeze({
 	--- The identity of the current run context.
 	Identity = (if _isEdit then "Edit" elseif _isServer then "Server" else "Client") :: Label,
 
@@ -58,3 +123,6 @@ return table.freeze({
 	--- Is the current device a VR device?
 	IsVR = VRService.VREnabled,
 })
+
+return RunContext
+

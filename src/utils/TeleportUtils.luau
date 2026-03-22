@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class TeleportUtils
-	@within Utils
 	TeleportService wrappers for player, party, and reserved-server flows.
 ]=]
 
@@ -40,13 +39,13 @@ export type TeleportResult = {
 local MAX_RETRIES = 3
 local RETRY_DELAY = 2
 
---[[ 
+--[=[
 	Teleports a single player to a place.
 	@param player - The player to teleport
 	@param placeId - The destination place ID
 	@param options - Optional teleport options
 	@return Promise resolving to TeleportResult
-]]
+]=]
 function TeleportUtils.TeleportAsync(
 	player: Player,
 	placeId: number,
@@ -55,13 +54,13 @@ function TeleportUtils.TeleportAsync(
 	return TeleportUtils.TeleportPlayersAsync({ player }, placeId, options)
 end
 
---[[ 
+--[=[
 	Teleports multiple players to a place.
 	@param players - Array of players to teleport
 	@param placeId - The destination place ID
 	@param options - Optional teleport options
 	@return Promise resolving to TeleportResult
-]]
+]=]
 function TeleportUtils.TeleportPlayersAsync(
 	players: { Player },
 	placeId: number,
@@ -123,21 +122,21 @@ function TeleportUtils.TeleportPlayersAsync(
 	end)
 end
 
---[[ 
+--[=[
 	Teleports all players in the server to a place.
 	@param placeId - The destination place ID
 	@param options - Optional teleport options
 	@return Promise resolving to TeleportResult
-]]
+]=]
 function TeleportUtils.TeleportAllAsync(placeId: number, options: TeleportOptions?): typeof(Promise.new(function() end))
 	return TeleportUtils.TeleportPlayersAsync(Players:GetPlayers(), placeId, options)
 end
 
---[[ 
+--[=[
 	Creates a reserved server and gets the access code.
 	@param placeId - The place ID to reserve
 	@return Promise resolving to access code string
-]]
+]=]
 function TeleportUtils.ReserveServerAsync(placeId: number): typeof(Promise.new(function() end))
 	return Promise.new(function(resolve, reject)
 		if not RunContext.IsServer() then
@@ -157,14 +156,14 @@ function TeleportUtils.ReserveServerAsync(placeId: number): typeof(Promise.new(f
 	end)
 end
 
---[[ 
+--[=[
 	Teleports players to a reserved server.
 	@param players - Array of players
 	@param placeId - The destination place ID
 	@param accessCode - The reserved server access code
 	@param teleportData - Optional data to pass
 	@return Promise
-]]
+]=]
 function TeleportUtils.TeleportToReservedAsync(
 	players: { Player },
 	placeId: number,
@@ -178,10 +177,10 @@ function TeleportUtils.TeleportToReservedAsync(
 	})
 end
 
---[[ 
+--[=[
 	Gets the teleport data that was passed when teleporting to this server.
 	@return TeleportData or nil
-]]
+]=]
 function TeleportUtils.GetLocalTeleportData(): TeleportData?
 	if not RunContext.IsClient() then
 		return nil
@@ -199,11 +198,11 @@ function TeleportUtils.GetLocalTeleportData(): TeleportData?
 	return nil
 end
 
---[[ 
+--[=[
 	Gets the teleport data for a specific player (server-side).
 	@param player - The player
 	@return TeleportData or nil
-]]
+]=]
 function TeleportUtils.GetPlayerTeleportData(player: Player): TeleportData?
 	local success, data = pcall(function()
 		return player:GetJoinData().TeleportData
@@ -216,12 +215,12 @@ function TeleportUtils.GetPlayerTeleportData(player: Player): TeleportData?
 	return nil
 end
 
---[[ 
+--[=[
 	Teleports a player to a friend's server.
 	@param player - The player to teleport
 	@param friendUserId - The friend's user ID
 	@return Promise
-]]
+]=]
 function TeleportUtils.TeleportToFriendAsync(player: Player, friendUserId: number): typeof(Promise.new(function() end))
 	return Promise.new(function(resolve, reject)
 		if not RunContext.IsServer() then
@@ -241,52 +240,53 @@ function TeleportUtils.TeleportToFriendAsync(player: Player, friendUserId: numbe
 	end)
 end
 
---[[ 
+--[=[
 	Gets the current server's job ID.
 	@return Server job ID string
-]]
+]=]
 function TeleportUtils.GetServerJobId(): string
 	return game.JobId
 end
 
---[[ 
+--[=[
 	Gets the current place ID.
 	@return Place ID number
-]]
+]=]
 function TeleportUtils.GetPlaceId(): number
 	return game.PlaceId
 end
 
---[[ 
+--[=[
 	Gets the current game ID.
 	@return Game ID number
-]]
+]=]
 function TeleportUtils.GetGameId(): number
 	return game.GameId
 end
 
---[[ 
+--[=[
 	Checks if the current server is a reserved/private server.
 	@return Whether this is a reserved server
-]]
+]=]
 function TeleportUtils.IsReservedServer(): boolean
 	return game.PrivateServerId ~= "" and game.PrivateServerOwnerId == 0
 end
 
---[[ 
+--[=[
 	Checks if the current server is a VIP server.
 	@return Whether this is a VIP server
-]]
+]=]
 function TeleportUtils.IsVIPServer(): boolean
 	return game.PrivateServerId ~= "" and game.PrivateServerOwnerId ~= 0
 end
 
---[[ 
+--[=[
 	Gets the VIP server owner ID (if applicable).
 	@return Owner user ID or 0
-]]
+]=]
 function TeleportUtils.GetVIPServerOwner(): number
 	return game.PrivateServerOwnerId
 end
 
 return TeleportUtils
+

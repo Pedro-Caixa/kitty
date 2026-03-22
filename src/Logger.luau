@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Logger
-	@within Kitty
 	Structured logging helper used by framework internals and user modules.
 ]=]
 

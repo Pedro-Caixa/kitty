@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class PolicyInfo
-	@within Utils
 	PolicyService wrappers for compliance and external-link capability checks.
 ]=]
 
@@ -100,11 +99,11 @@ local function _getChatCacheKey(userId1: number, userId2: number): string
 	end
 end
 
---[[
+--[=[
 	Gets a promise for a player's policy information.
 	@param userId - Optional user ID (defaults to LocalPlayer on client)
 	@return Promise that resolves to PolicyResult
-]]
+]=]
 function PolicyInfo.GetAsync(userId: number?): any
 	local player: Player?
 
@@ -137,11 +136,11 @@ function PolicyInfo.GetAsync(userId: number?): any
 	return promise
 end
 
---[[
+--[=[
 	Synchronously gets policy info (blocks until resolved).
 	@param userId - Optional user ID
 	@return PolicyResult
-]]
+]=]
 function PolicyInfo.Get(userId: number?): PolicyResult
 	local success, result = PolicyInfo.GetAsync(userId):await()
 
@@ -152,23 +151,24 @@ function PolicyInfo.Get(userId: number?): PolicyResult
 	return _defaultPolicy
 end
 
---[[
+--[=[
 	Checks if a specific external link type is allowed for a player.
 	@param linkType - The type of external link
 	@param userId - Optional user ID
 	@return Whether the link type is allowed
-]]
+]=]
 function PolicyInfo.IsExternalLinkAllowed(linkType: ExternalLinkType, userId: number?): boolean
 	local policy = PolicyInfo.Get(userId)
 	return policy.AllowedExternalLinkReferences[linkType] == true
 end
 
---[[
+--[=[
 	Clears the cached policy for a player.
 	@param userId - The user ID to clear cache for
-]]
+]=]
 function PolicyInfo.ClearCache(userId: number): ()
 	_promises[userId] = nil
 end
 
 return table.freeze(PolicyInfo)
+

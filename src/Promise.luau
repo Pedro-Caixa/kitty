@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Promise
-	@within Kitty
 	Wrapper around Promise for async composition and control flow.
 ]=]
 

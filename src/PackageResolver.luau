@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class PackageResolver
-	@within Kitty
 	Resolves Wally package ModuleScripts by alias and case-insensitive fallback.
 ]=]
 

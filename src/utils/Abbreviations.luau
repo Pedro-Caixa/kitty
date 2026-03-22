@@ -1,8 +1,22 @@
 --!strict
 --[=[
 	@class Abbreviations
-	@within Utils
 	Power/suffix definitions used by BigNumber for compact number formatting.
+]=]
+
+--[=[
+	@interface Entry
+	@within Abbreviations
+	.Power number -- Power-of-ten threshold for this suffix.
+	.Suffix string -- Short suffix displayed for numbers at this scale.
+
+	One abbreviation entry used by BigNumber formatting.
+]=]
+
+--[=[
+	@type List {Entry}
+	@within Abbreviations
+	Ordered list of abbreviation entries from smallest to largest scale.
 ]=]
 
 return {
@@ -18,3 +32,4 @@ return {
 	{ Power = 30, Suffix = "No" },
 	{ Power = 33, Suffix = "Dc" },
 }
+

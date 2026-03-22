@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Bootstrap
-	@within Kitty
 	Internal lifecycle bootstrapper that discovers and runs services/controllers.
 ]=]
 

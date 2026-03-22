@@ -3,17 +3,6 @@
 	@class Kitty
 	Kitty framework root API.
 
-	@prop Service (name: string, def: ServiceDef) -> ServiceDef
-	@prop Controller (name: string, def: ControllerDef) -> ControllerDef
-	@prop Component (tag: string, def: ComponentDef) -> any
-	@prop DefineEnums (defs: { [string]: { string } }) -> { [string]: KittyEnum }
-	@prop Observer Observer
-	@prop Packet Packet
-	@prop Trove Trove
-	@prop Promise Promise
-	@prop ProfileStore ProfileStore
-	@prop Replica Replica
-	@prop Utils Utils
 ]=]
 local Bootstrap = require(script.Bootstrap)
 local Service = require(script.Service)
@@ -34,6 +23,78 @@ export type ServiceDef = Service.ServiceDef
 export type ControllerDef = Controller.ControllerDef
 
 local Kitty = {}
+
+--[=[
+	@prop Service (name: string, def: ServiceDef) -> ServiceDef
+	@within Kitty
+	Registers and returns a service definition.
+]=]
+
+--[=[
+	@prop Controller (name: string, def: ControllerDef) -> ControllerDef
+	@within Kitty
+	Registers and returns a controller definition.
+]=]
+
+--[=[
+	@prop Component (tag: string, def: ControllerDef) -> any
+	@within Kitty
+	Registers a component definition bound to a CollectionService tag.
+]=]
+
+--[=[
+	@prop DefineEnums (defs: { [string]: { string } }) -> { [string]: Enum.EnumCollection }
+	@within Kitty
+	Creates enum-like collections from string definitions.
+]=]
+
+--[=[
+	@prop Observer Observer
+	@within Kitty
+	Observer integration module.
+]=]
+
+--[=[
+	@prop Packet Packet
+	@within Kitty
+	Packet networking integration module.
+]=]
+
+--[=[
+	@prop Trove Trove
+	@within Kitty
+	Trove cleanup integration module.
+]=]
+
+--[=[
+	@prop Promise Promise
+	@within Kitty
+	Promise integration module.
+]=]
+
+--[=[
+	@prop ProfileStore ProfileStore
+	@within Kitty
+	ProfileStore integration module.
+]=]
+
+--[=[
+	@prop Replica Replica
+	@within Kitty
+	Replica synchronization integration module.
+]=]
+
+--[=[
+	@prop Utils Utils
+	@within Kitty
+	Utility namespace with built-in helpers.
+]=]
+
+--[=[
+	@prop Logger Logger
+	@within Kitty
+	Logger helper used across the framework.
+]=]
 
 local function _collectModuleScripts(folder: Instance): { ModuleScript }
 	local modules: { ModuleScript } = {}

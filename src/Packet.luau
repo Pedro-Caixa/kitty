@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Packet
-	@within Kitty
 	Wrapper around ByteNet for packet and namespace definition.
 ]=]
 

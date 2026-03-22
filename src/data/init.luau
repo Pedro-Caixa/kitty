@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Data
-	@within Kitty
 	Compatibility data-store bridge that can be configured with ProfileStore/Replica implementations.
 ]=]
 export type DataStore = {

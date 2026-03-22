@@ -15,7 +15,6 @@
 	```
 
 	@class Queue
-	@within Utils
 ]=]
 
 local Queue = {}
@@ -118,3 +117,4 @@ function Queue.IsEmpty<T>(self: Queue<T>): boolean
 end
 
 return Queue
+

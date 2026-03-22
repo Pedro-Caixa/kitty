@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Trove
-	@within Kitty
 	Wrapper around Trove for deterministic cleanup management.
 ]=]
 

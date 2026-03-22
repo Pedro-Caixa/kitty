@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class ServerUtils
-	@within Utils
 	Server metadata and runtime health helpers for matchmaking and diagnostics.
 ]=]
 
@@ -55,83 +54,83 @@ export type RegionInfo = {
 	FullName: string?,
 }
 
---[[ 
+--[=[
 	Gets the server's job ID (unique identifier for this server instance).
 	@return Job ID string
-]]
+]=]
 function ServerUtils.GetJobId(): string
 	return game.JobId
 end
 
---[[ 
+--[=[
 	Gets the current place ID.
 	@return Place ID number
-]]
+]=]
 function ServerUtils.GetPlaceId(): number
 	return game.PlaceId
 end
 
---[[ 
+--[=[
 	Gets the current game/universe ID.
 	@return Game ID number
-]]
+]=]
 function ServerUtils.GetGameId(): number
 	return game.GameId
 end
 
---[[ 
+--[=[
 	Gets the place version number.
 	@return Version number
-]]
+]=]
 function ServerUtils.GetPlaceVersion(): number
 	return game.PlaceVersion
 end
 
---[[ 
+--[=[
 	Gets the current player count.
 	@return Number of players
-]]
+]=]
 function ServerUtils.GetPlayerCount(): number
 	return #Players:GetPlayers()
 end
 
---[[ 
+--[=[
 	Gets the maximum player capacity.
 	@return Max players number
-]]
+]=]
 function ServerUtils.GetMaxPlayers(): number
 	return Players.MaxPlayers
 end
 
---[[ 
+--[=[
 	Checks if the server is full.
 	@return Whether server is at capacity
-]]
+]=]
 function ServerUtils.IsFull(): boolean
 	return #Players:GetPlayers() >= Players.MaxPlayers
 end
 
---[[ 
+--[=[
 	Gets available player slots.
 	@return Number of open slots
-]]
+]=]
 function ServerUtils.GetAvailableSlots(): number
 	return math.max(0, Players.MaxPlayers - #Players:GetPlayers())
 end
 
---[[ 
+--[=[
 	Gets the server uptime in seconds.
 	@return Uptime in seconds
-]]
+]=]
 function ServerUtils.GetUptimeSeconds(): number
 	return os.time() - _serverStartTime
 end
 
---[[ 
+--[=[
 	Gets the server uptime formatted as a string.
 	@param short - Use short format (1h 2m 3s vs 1 hour 2 minutes 3 seconds)
 	@return Formatted uptime string
-]]
+]=]
 function ServerUtils.GetUptimeFormatted(short: boolean?): string
 	local seconds = ServerUtils.GetUptimeSeconds()
 	local useShort = short ~= false
@@ -155,50 +154,50 @@ function ServerUtils.GetUptimeFormatted(short: boolean?): string
 	return table.concat(parts, " ")
 end
 
---[[ 
+--[=[
 	Gets the Unix timestamp when the server started.
 	@return Unix timestamp
-]]
+]=]
 function ServerUtils.GetStartTime(): number
 	return _serverStartTime
 end
 
---[[ 
+--[=[
 	Checks if running in Roblox Studio.
 	@return Whether in Studio
-]]
+]=]
 function ServerUtils.IsStudio(): boolean
 	return RunService:IsStudio()
 end
 
---[[ 
+--[=[
 	Checks if this is a public server.
 	@return Whether public
-]]
+]=]
 function ServerUtils.IsPublicServer(): boolean
 	return game.PrivateServerId == ""
 end
 
---[[ 
+--[=[
 	Checks if this is a VIP server (player-owned private server).
 	@return Whether VIP server
-]]
+]=]
 function ServerUtils.IsVIPServer(): boolean
 	return game.PrivateServerId ~= "" and game.PrivateServerOwnerId ~= 0
 end
 
---[[ 
+--[=[
 	Checks if this is a reserved server (game-created private server).
 	@return Whether reserved server
-]]
+]=]
 function ServerUtils.IsReservedServer(): boolean
 	return game.PrivateServerId ~= "" and game.PrivateServerOwnerId == 0
 end
 
---[[ 
+--[=[
 	Gets the server type as a string.
 	@return "Public", "VIP", "Reserved", or "Studio"
-]]
+]=]
 function ServerUtils.GetServerType(): "Public" | "VIP" | "Reserved" | "Studio"
 	if RunService:IsStudio() then
 		return "Studio"
@@ -211,10 +210,10 @@ function ServerUtils.GetServerType(): "Public" | "VIP" | "Reserved" | "Studio"
 	end
 end
 
---[[ 
+--[=[
 	Gets the VIP server owner's user ID (if applicable).
 	@return Owner user ID or nil
-]]
+]=]
 function ServerUtils.GetVIPServerOwner(): number?
 	if ServerUtils.IsVIPServer() then
 		return game.PrivateServerOwnerId
@@ -222,10 +221,10 @@ function ServerUtils.GetVIPServerOwner(): number?
 	return nil
 end
 
---[[ 
+--[=[
 	Gets the private server ID (if applicable).
 	@return Private server ID or nil
-]]
+]=]
 function ServerUtils.GetPrivateServerId(): string?
 	if game.PrivateServerId ~= "" then
 		return game.PrivateServerId
@@ -233,10 +232,10 @@ function ServerUtils.GetPrivateServerId(): string?
 	return nil
 end
 
---[[ 
+--[=[
 	Gets the server's country/region code.
 	@return Promise resolving to RegionInfo
-]]
+]=]
 function ServerUtils.GetRegionAsync(): typeof(Promise.new(function() end))
 	return Promise.new(function(resolve, reject)
 		local player = Players:GetPlayers()[1]
@@ -271,10 +270,10 @@ function ServerUtils.GetRegionAsync(): typeof(Promise.new(function() end))
 	end)
 end
 
---[[ 
+--[=[
 	Gets basic server info as a table.
 	@return ServerInfo table
-]]
+]=]
 function ServerUtils.GetServerInfo(): ServerInfo
 	return {
 		JobId = game.JobId,
@@ -287,10 +286,10 @@ function ServerUtils.GetServerInfo(): ServerInfo
 	}
 end
 
---[[ 
+--[=[
 	Gets server statistics.
 	@return ServerStats table
-]]
+]=]
 function ServerUtils.GetServerStats(): ServerStats
 	local stats: ServerStats = {
 		PlayerCount = ServerUtils.GetPlayerCount(),
@@ -313,10 +312,10 @@ function ServerUtils.GetServerStats(): ServerStats
 	return stats
 end
 
---[[ 
+--[=[
 	Gets the current memory usage in MB (server-side only).
 	@return Memory usage or nil
-]]
+]=]
 function ServerUtils.GetMemoryUsageMB(): number?
 	if not RunService:IsServer() then
 		return nil
@@ -329,18 +328,18 @@ function ServerUtils.GetMemoryUsageMB(): number?
 	return if success then result else nil
 end
 
---[[ 
+--[=[
 	Gets the server's heartbeat time in milliseconds.
 	@return Heartbeat time or nil
-]]
+]=]
 function ServerUtils.GetHeartbeatMs(): number?
 	return _heartbeatTimeMs
 end
 
---[[ 
+--[=[
 	Gets approximate server FPS based on heartbeat.
 	@return FPS number or nil
-]]
+]=]
 function ServerUtils.GetServerFPS(): number?
 	local heartbeat = ServerUtils.GetHeartbeatMs()
 	if heartbeat and heartbeat > 0 then
@@ -349,11 +348,11 @@ function ServerUtils.GetServerFPS(): number?
 	return nil
 end
 
---[[ 
+--[=[
 	Checks if the server is considered "laggy" based on heartbeat.
 	@param threshold - FPS threshold (default: 30)
 	@return Whether server FPS is below threshold
-]]
+]=]
 function ServerUtils.IsServerLagging(threshold: number?): boolean
 	local fps = ServerUtils.GetServerFPS()
 	if not fps then
@@ -362,10 +361,10 @@ function ServerUtils.IsServerLagging(threshold: number?): boolean
 	return fps < (threshold or 30)
 end
 
---[[ 
+--[=[
 	Gets a formatted server description string.
 	@return Description string like "Public Server | 5/12 Players | Uptime: 1h 23m"
-]]
+]=]
 function ServerUtils.GetServerDescription(): string
 	local serverType = ServerUtils.GetServerType()
 	local playerCount = ServerUtils.GetPlayerCount()
@@ -375,13 +374,14 @@ function ServerUtils.GetServerDescription(): string
 	return `{serverType} Server | {playerCount}/{maxPlayers} Players | Uptime: {uptime}`
 end
 
---[[ 
+--[=[
 	Creates a unique identifier for this server session.
 	Combines JobId with start time for uniqueness.
 	@return Unique session ID
-]]
+]=]
 function ServerUtils.GetSessionId(): string
 	return `{game.JobId}_{_serverStartTime}`
 end
 
 return ServerUtils
+

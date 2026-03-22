@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Service
-	@within Kitty
 	Factory for creating Kitty service definitions.
 ]=]
 

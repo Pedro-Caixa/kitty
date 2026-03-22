@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Replica
-	@within Kitty
 	Wrapper around Replica package for server-authoritative state replication.
 ]=]
 

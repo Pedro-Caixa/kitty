@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class ProfileStore
-	@within Kitty
 	Wrapper around ProfileStore package for persistent player/session data.
 ]=]
 

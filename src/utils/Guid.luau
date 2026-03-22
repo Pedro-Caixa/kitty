@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Guid
-	@within Utils
 	GUID creation plus binary compression/decompression helpers.
 ]=]
 
@@ -9,21 +8,21 @@ local HttpService = game:GetService("HttpService")
 
 local Guid = {}
 
---[[
+--[=[
 	Creates a new GUID string.
-	@return A new GUID in the format "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
-]]
+	@return string -- A new GUID in the format "xxxxxxxx-xxxx-xxxx-xxxx-xxxxxxxxxxxx"
+]=]
 function Guid.Create(): string
 	return HttpService:GenerateGUID(false)
 end
 
---[[
+--[=[
 	Compresses a GUID string into a buffer at the specified offset.
-	@param buf - The buffer to write to
-	@param offset - The byte offset to start writing at
-	@param value - The GUID string to compress
-	@return The new offset after writing (offset + 16)
-]]
+	@param buf buffer -- The buffer to write to.
+	@param offset number -- The byte offset to start writing at.
+	@param value string -- The GUID string to compress.
+	@return number -- The new offset after writing (offset + 16).
+]=]
 function Guid.Compress(buf: buffer, offset: number, value: string): number
 	local stream = value:gsub("-", "")
 
@@ -48,12 +47,13 @@ function Guid.Compress(buf: buffer, offset: number, value: string): number
 	return offset + 16
 end
 
---[[
+--[=[
 	Decompresses a GUID from a buffer at the specified offset.
-	@param buf - The buffer to read from
-	@param offset - The byte offset to start reading at
-	@return The GUID string and the new offset after reading
-]]
+	@param buf buffer -- The buffer to read from.
+	@param offset number -- The byte offset to start reading at.
+	@return string -- The decompressed GUID string.
+	@return number -- The new offset after reading.
+]=]
 function Guid.Decompress(buf: buffer, offset: number): (string, number)
 	local a = buffer.readu32(buf, offset)
 

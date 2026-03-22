@@ -1,7 +1,6 @@
 --!nonstrict
 --[=[
 	@class BigNumber
-	@within Utils
 	Arbitrary-scale number helper that stores values as mantissa/exponent pairs.
 ]=]
 --// BigNumber Module
@@ -19,6 +18,13 @@ local parent = script.Parent
 assert(parent, "BigNumber must be parented under utils")
 local Abbreviations = require(parent:WaitForChild("Abbreviations"))
 
+--[=[
+	Rounds and formats a number to the configured decimal precision.
+
+	@param num number
+	@param IWantNumber boolean?
+	@return number | string
+]=]
 function BigNumber.TrimDecimal(num: number, IWantNumber: boolean?): number | string
 	local multiplier = 10 ^ TRIM_DECIMAL_LEVEL
 	local rounded = math.floor(num * multiplier + 0.5) / multiplier
@@ -35,6 +41,13 @@ function BigNumber.TrimDecimal(num: number, IWantNumber: boolean?): number | str
 	return formatted
 end
 
+--[=[
+	Constructs a BigNumber from mantissa and exponent components.
+
+	@param mantissa number
+	@param exponent number
+	@return BigNumber
+]=]
 function BigNumber.new(mantissa: number, exponent: number)
 	local self = setmetatable({}, BigNumber)
 	self.m = mantissa or 0
@@ -43,6 +56,9 @@ function BigNumber.new(mantissa: number, exponent: number)
 	return self
 end
 
+--[=[
+	Normalizes mantissa and exponent to canonical scientific notation.
+]=]
 function BigNumber:normalize()
 	if self.m == 0 then
 		self.e = 0
@@ -62,10 +78,20 @@ function BigNumber:normalize()
 	self.e = math.floor(self.e)
 end
 
+--[=[
+	Returns a copy of this BigNumber.
+
+	@return BigNumber
+]=]
 function BigNumber:clone()
 	return BigNumber.new(self.m, self.e)
 end
 
+--[=[
+	Returns a floored version of this BigNumber.
+
+	@return BigNumber
+]=]
 function BigNumber:floor()
 	if self.e < 0 then
 		return BigNumber.new(0, 0)
@@ -82,6 +108,11 @@ function BigNumber:floor()
 	return BigNumber.from(floored)
 end
 
+--[=[
+	Returns a rounded version of this BigNumber.
+
+	@return BigNumber
+]=]
 function BigNumber:round()
 	if self.e < 0 then
 		return BigNumber.new(0, 0)
@@ -98,10 +129,21 @@ function BigNumber:round()
 	return BigNumber.from(rounded)
 end
 
+--[=[
+	Converts the BigNumber into a serializable table.
+
+	@return { m: number, e: number }
+]=]
 function BigNumber:toTable()
 	return { m = self.m, e = self.e }
 end
 
+--[=[
+	Compares this value to another BigNumber-compatible value.
+
+	@param other any
+	@return number
+]=]
 function BigNumber:compare(other: any)
 	if typeof(other) == "number" then
 		other = BigNumber.from(other)
@@ -130,22 +172,52 @@ function BigNumber:compare(other: any)
 	end
 end
 
+--[=[
+	Returns whether this value is less than another.
+
+	@param other any
+	@return boolean
+]=]
 function BigNumber:lt(other: any)
 	return self:compare(other) < 0
 end
 
+--[=[
+	Returns whether this value is less than or equal to another.
+
+	@param other any
+	@return boolean
+]=]
 function BigNumber:le(other: any)
 	return self:compare(other) <= 0
 end
 
+--[=[
+	Returns whether this value is greater than another.
+
+	@param other any
+	@return boolean
+]=]
 function BigNumber:gt(other: any)
 	return self:compare(other) > 0
 end
 
+--[=[
+	Returns whether this value is greater than or equal to another.
+
+	@param other any
+	@return boolean
+]=]
 function BigNumber:ge(other: any)
 	return self:compare(other) >= 0
 end
 
+--[=[
+	Adds another BigNumber-compatible value to this one.
+
+	@param other any
+	@return BigNumber
+]=]
 function BigNumber:add(other: any)
 	if typeof(other) == "number" then
 		other = BigNumber.from(other)
@@ -171,6 +243,12 @@ function BigNumber:add(other: any)
 	return result
 end
 
+--[=[
+	Subtracts another BigNumber-compatible value from this one.
+
+	@param other any
+	@return BigNumber
+]=]
 function BigNumber:sub(other: any)
 	if typeof(other) == "number" then
 		other = BigNumber.from(other)
@@ -180,6 +258,12 @@ function BigNumber:sub(other: any)
 	return self:add(negOther)
 end
 
+--[=[
+	Multiplies this value by another BigNumber-compatible value.
+
+	@param other any
+	@return BigNumber
+]=]
 function BigNumber:mul(other: any)
 	if typeof(other) == "number" then
 		other = BigNumber.from(other)
@@ -190,6 +274,12 @@ function BigNumber:mul(other: any)
 	return result
 end
 
+--[=[
+	Divides this value by another BigNumber-compatible value.
+
+	@param other any
+	@return BigNumber
+]=]
 function BigNumber:div(other: any)
 	if typeof(other) == "number" then
 		other = BigNumber.from(other)
@@ -204,6 +294,12 @@ function BigNumber:div(other: any)
 	return result
 end
 
+--[=[
+	Raises this value to a numeric power.
+
+	@param power number
+	@return BigNumber
+]=]
 function BigNumber:pow(power: number)
 	if power == 0 then
 		return BigNumber.new(1, 0)
@@ -227,10 +323,20 @@ function BigNumber:pow(power: number)
 	return result
 end
 
+--[=[
+	Converts this value to a Lua number.
+
+	@return number
+]=]
 function BigNumber:toNumber(): number
 	return self.m * (10 ^ self.e)
 end
 
+--[=[
+	Formats this value as a human-readable string.
+
+	@return string
+]=]
 function BigNumber:toString()
 	if self.m == 0 then
 		return "0"
@@ -274,6 +380,12 @@ function BigNumber:toString()
 	return formatted .. "e+" .. tostring(self.e)
 end
 
+--[=[
+	Constructs a BigNumber from table, number, or string input.
+
+	@param value any
+	@return BigNumber
+]=]
 function BigNumber.from(value: any)
 	if typeof(value) == "table" and value.m and value.e then
 		return BigNumber.new(value.m, value.e)
@@ -293,6 +405,12 @@ function BigNumber.from(value: any)
 	end
 end
 
+--[=[
+	Parses a string representation into a BigNumber.
+
+	@param str string
+	@return BigNumber
+]=]
 function BigNumber.parse(str: string)
 	str = string.gsub(tostring(str), "%s+", "")
 	str = string.gsub(str, "'", "")
@@ -322,3 +440,4 @@ function BigNumber.parse(str: string)
 end
 
 return BigNumber
+

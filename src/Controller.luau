@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Controller
-	@within Kitty
 	Factory for creating Kitty controller definitions.
 ]=]
 

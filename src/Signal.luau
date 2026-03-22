@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Signal
-	@within Kitty
 	Lightweight signal implementation for event-style communication.
 ]=]
 

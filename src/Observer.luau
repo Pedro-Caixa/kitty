@@ -1,7 +1,6 @@
 --!strict
 --[=[
 	@class Observer
-	@within Kitty
 	Wrapper around Observers package for tag, player, and property observation.
 ]=]
 
