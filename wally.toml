@@ -1,12 +1,12 @@
 [package]
 name = "pedro-caixa/kitty"
-version = "0.1.1"
+version = "0.1.2"
 registry = "https://github.com/UpliftGames/wally-index"
 description = "Lifecycle-managed game framework for Roblox"
 license = "MIT"
 realm = "shared"
 
-include = ["wally.toml", "README.md", "LICENSE", "src", "kitty.project.json", "kitty.luau"]
+include = ["src/**", "kitty.project.json"]
 
 [dependencies]
 observers = "sleitnick/observers@0.5.0"
