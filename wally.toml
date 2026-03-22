@@ -6,7 +6,7 @@ description = "Lifecycle-managed game framework for Roblox"
 license = "MIT"
 realm = "shared"
 
-include = ["wally.toml", "README.md", "LICENSE", "src", "default.project.json"]
+include = ["wally.toml", "README.md", "LICENSE", "src", "kitty.project.json", "kitty.luau"]
 
 [dependencies]
 observers = "sleitnick/observers@0.5.0"
